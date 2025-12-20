@@ -76,13 +76,3 @@ Instructions on how to set up the different agents and models will be provided h
 4.  **UI Deployment:** Deploying the Next.js user interface.
 
 ---
-
-## 🤝 Contribution
-
-This project is a massive undertaking. Contributions are highly encouraged and welcome. Feel free to open issues or submit pull requests to my GitHub, **saadsalmanakram**, to help build the next generation of AI translation.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the `LICENSE.md` file for more details.
