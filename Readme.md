@@ -76,3 +76,68 @@ Instructions on how to set up the different agents and models will be provided h
 4.  **UI Deployment:** Deploying the Next.js user interface.
 
 ---
+
+To wrap everything up, here is the finalized, comprehensive file structure for **OmniLingua-Translator**. This structure integrates the Next.js frontend, the Node.js agent orchestrator, the Python perception microservice, and the migration scripts.
+
+### 📂 Project Structure
+
+```text
+OmniLingua-Translator/
+├── client/                         # NEXT.JS FRONTEND
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── layout.tsx          # Global layout
+│   │   │   ├── page.tsx            # Landing/Hero
+│   │   │   └── translate/
+│   │   │       └── page.tsx        # Main Translation UI & Polling Logic
+│   │   ├── components/
+│   │   │   ├── ui/                 # Reusable Radix/Tailwind components
+│   │   │   │   ├── button.tsx
+│   │   │   │   ├── progress.tsx
+│   │   │   │   └── card.tsx
+│   │   │   └── PerceptionAgentUploader.tsx
+│   │   ├── hooks/
+│   │   │   ├── useFileUpload.ts    # Handles Axios uploads
+│   │   │   └── useTranslationStatus.ts # Handles polling logic
+│   │   ├── lib/
+│   │   │   └── utils.ts            # Tailwind CSS merger (cn)
+│   │   └── services/
+│   │       └── api.ts              # Axios instance configuration
+│   ├── tailwind.config.ts
+│   └── package.json
+│
+├── server/                         # NODE.JS & AGENT ORCHESTRATOR
+│   ├── src/
+│   │   ├── agents/                 # Specialized AI Agent Logic
+│   │   │   ├── PerceptionAgent.ts  # Calls Python Service
+│   │   │   ├── ContextAgent.ts     # Weaviate Hybrid Search
+│   │   │   ├── LinguisticAgent.ts  # Initial Gemma Translation
+│   │   │   ├── RefinementAgent.ts  # Self-Correction Loop
+│   │   │   └── orchestrator.ts     # Job queue & workflow management
+│   │   ├── controllers/
+│   │   │   └── translationController.ts
+│   │   ├── routes/
+│   │   │   └── translationRoutes.ts
+│   │   ├── services/
+│   │   │   └── weaviate.ts         # Weaviate Client Setup
+│   │   └── index.ts                # Entry Point
+│   ├── uploads/                    # Temp storage for Node.js
+│   ├── tsconfig.json
+│   └── package.json
+│
+├── perception_service/             # PYTHON PERCEPTION MICROSERVICE
+│   ├── app.py                      # Flask API (Whisper + MoviePy)
+│   ├── requirements.txt            # Python deps
+│   └── venv/                       # Virtual environment
+│
+├── scripts/                        # DATA OPS
+│   ├── migrateData.ts              # Weaviate Schema & Batch Import
+│   └── dataset.json                # OmniLingua-SEA source data
+│
+├── .env                            # Global Environment Variables
+├── docker-compose.yml              # For running Weaviate locally
+└── README.md                       # Project Documentation
+
+```
+
+---
