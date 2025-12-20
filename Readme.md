@@ -1,3 +1,4 @@
+
 # OmniLingua-Translator: A Culturally-Aware, Multimodal Translation Agent 🗣️🌍
 
 **OmniLingua-Translator** is an advanced, multi-agent translation system that transcends simple word-for-word translation. Built upon the massive **OmniLingua-SEA** dataset, this project is designed to capture and convey the **cultural context, idioms, and emotional tone** of the languages of India and Pakistan. With its multimodal capabilities, it can translate not only text but also speech and even visual cues, providing a truly comprehensive and culturally resonant translation.
