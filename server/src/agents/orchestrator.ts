@@ -1,34 +1,35 @@
-// Simple in-memory store for translation status
-export const translationJobs = new Map<string, any>();
+import { runPerceptionAgent } from './PerceptionAgent';
+import { runContextAgent } from './ContextAgent';
+import { runLinguisticAgent } from './LinguisticAgent';
 
-export const orchestrateTranslation = async (
-  id: string, 
-  content: any, 
-  type: 'text' | 'audio' | 'video'
-) => {
-  // 1. Initialize Job State
-  translationJobs.set(id, { status: 'processing', step: 'Perception Agent', result: null });
+export const orchestrateTranslation = async (id: string, filePath: string, type: string) => {
+    try {
+        // 1. PERCEPTION: Audio/Video -> Text
+        translationJobs.set(id, { status: 'processing', step: 'Perception Agent' });
+        const perceptionData = await runPerceptionAgent(filePath);
+        
+        // 2. CONTEXT: Text -> Cultural Nuance (RAG)
+        translationJobs.set(id, { ...translationJobs.get(id), step: 'Context Agent' });
+        const contextData = await runContextAgent(perceptionData.text);
 
-  try {
-    // --- STEP 1: Perception Agent ---
-    // (Logic for Whisper/Vision models goes here)
-    translationJobs.set(id, { ...translationJobs.get(id), step: 'Context Agent' });
+        // 3. LINGUISTIC: Text + Nuance -> Translation
+        translationJobs.set(id, { ...translationJobs.get(id), step: 'Linguistic Agent' });
+        const translation = await runLinguisticAgent(
+            perceptionData.text, 
+            contextData.culturalContext, 
+            "English" // Or your desired target language
+        );
 
-    // --- STEP 2: Context Agent (Hybrid Search) ---
-    // Using the searchCulturalContext function we discussed earlier
-    translationJobs.set(id, { ...translationJobs.get(id), step: 'Linguistic Agent' });
+        // 4. FINAL STATE
+        translationJobs.set(id, { 
+            status: 'completed', 
+            step: 'Finished', 
+            result: translation,
+            culturalNotes: [contextData.culturalContext]
+        });
 
-    // --- STEP 3: Linguistic & Refinement Agent ---
-    const finalTranslation = "नमस्ते (Namaste) - used with cultural respect."; // Mock result
-    
-    // 2. Mark Job as Completed
-    translationJobs.set(id, { 
-      status: 'completed', 
-      step: 'Finished', 
-      result: finalTranslation,
-      culturalNotes: ["The term used reflects the social hierarchy detected in the video."]
-    });
-  } catch (error) {
-    translationJobs.set(id, { status: 'failed', error: error.message });
-  }
+    } catch (error) {
+        console.error("Orchestration Error:", error);
+        translationJobs.set(id, { status: 'failed', error: "The agents encountered a conflict." });
+    }
 };
