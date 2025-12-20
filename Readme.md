@@ -24,7 +24,7 @@ The translation process is orchestrated by a team of specialized AI agents:
 
 ### Fine-Tuning on OmniLingua-SEA
 
-The project's foundation is a **large language model (LLM)**, such as a variant of Mixtral or Gemma, that has been meticulously fine-tuned on the massive **OmniLingua-SEA** dataset. This process is about more than just vocabulary; it trains the model to understand the subtle linguistic and cultural nuances, idiomatic expressions, and social context of the languages of India and Pakistan.
+The project's foundation is a **large language model (LLM)**, Gemma in this case, that has been meticulously fine-tuned on the massive **OmniLingua-SEA** dataset. This process is about more than just vocabulary; it trains the model to understand the subtle linguistic and cultural nuances, idiomatic expressions, and social context of the languages of India and Pakistan.
 
 ### Hybrid Search and RAG
 
