@@ -11,6 +11,19 @@
 
 ---
 
+## 💻 Tech Stack
+
+The application is built using a modern, scalable **MERN** architecture with a specialized frontend for high-performance interaction:
+
+* **Frontend:** [Next.js](https://nextjs.org/) (App Router) for optimized server-side rendering and routing.
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/) for a responsive, utility-first design system.
+* **Type Safety:** [TypeScript](https://www.typescriptlang.org/) integrated across the entire stack to ensure robust, maintainable code.
+* **Backend:** [Node.js](https://nodejs.org/) & [Express.js](https://expressjs.com/) handling the API orchestration between AI agents.
+* **Database:** [MongoDB](https://www.mongodb.com/) for user data and session management, alongside [Weaviate](https://weaviate.io/) for vector storage.
+
+
+---
+
 ## ⚙️ Core Components
 
 ### Agentic AI System
