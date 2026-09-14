@@ -1,0 +1,25 @@
+# Environment and secrets
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+.next/
+out/
+npm-debug.log*
+
+# Local data
+backend/data/
+*.db
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/*.log
